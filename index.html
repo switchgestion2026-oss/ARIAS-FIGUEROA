@@ -89,11 +89,25 @@ p{margin:0}
 body.menu-open{overflow:hidden}
 
 /* Hero */
-.hero{position:relative;isolation:isolate;margin-top:calc(-1 * var(--header-h));padding:calc(var(--header-h) + 56px) 0 64px;min-height:100vh;min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden;background:var(--deep)}
+.hero{position:relative;isolation:isolate;margin-top:calc(-1 * var(--header-h));padding:calc(var(--header-h) + 56px) 0 96px;min-height:100vh;min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden;background:var(--deep)}
 .hero-media{position:absolute;inset:0;z-index:-2}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:72% center}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,40,32,.72) 0%,rgba(20,40,32,.86) 100%)}
-.hero-dots{position:absolute;right:var(--gutter);top:calc(var(--header-h) + 40px);width:180px;height:72px;z-index:-1;background-image:radial-gradient(rgba(213,188,137,.55) 1px,transparent 1.4px);background-size:12px 12px;opacity:.7}
+.hero-frame{position:absolute;inset:calc(var(--header-h) + 10px) 10px 10px;border:1px solid rgba(213,188,137,.35);border-radius:4px;pointer-events:none;z-index:-1}
+.hero-motto{display:none}
+.hero-dots{position:absolute;right:28px;top:calc(var(--header-h) + 28px);width:120px;height:60px;z-index:-1;background-image:radial-gradient(rgba(213,188,137,.55) 1px,transparent 1.4px);background-size:12px 12px;opacity:.7}
+.hero-content>*{animation:heroIn .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-content>:nth-child(2){animation-delay:.12s}
+.hero-content>:nth-child(3){animation-delay:.24s}
+.hero-content>:nth-child(4){animation-delay:.36s}
+.hero-content>:nth-child(5){animation-delay:.48s}
+@keyframes heroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.ribbon{position:relative;z-index:5;margin:-28px -5%;transform:rotate(-1.6deg);background:var(--green);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);box-shadow:0 10px 30px rgba(20,40,32,.25);overflow:hidden}
+.ribbon-track{display:flex;width:max-content;animation:ribbon 40s linear infinite}
+.ribbon-list{display:flex;align-items:center;gap:28px;padding:18px 14px;margin:0;list-style:none;font:italic 400 22px/1 var(--serif);color:var(--cream);white-space:nowrap}
+.ribbon-list li{display:flex;align-items:center;gap:28px}
+.ribbon-list li::after{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+@keyframes ribbon{to{transform:translateX(-50%)}}
 .hero .wrap{width:100%;max-width:1280px}
 .hero-content{max-width:640px}
 .eyebrow{display:flex;align-items:center;gap:12px;font:600 12px/1.4 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2)}
@@ -110,6 +124,7 @@ body.menu-open{overflow:hidden}
 .frame{position:relative;isolation:isolate;max-width:min(440px,calc(100% - 18px));width:100%}
 .frame::after{content:"";position:absolute;inset:18px -18px -18px 18px;border:1px solid var(--gold);border-radius:var(--radius);z-index:-1}
 .frame img,.frame .ph{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius);background:var(--cream)}
+.frame img[src="hero.webp"]{object-position:82% center}
 .ph{display:none;align-items:center;justify-content:center;color:var(--green-2);font-size:14px;letter-spacing:.12em;text-transform:uppercase;border:1px dashed rgba(82,104,92,.4)}
 .is-missing img{display:none}.is-missing .ph{display:flex}
 .about-copy p{margin-top:18px;color:var(--muted);max-width:560px}
@@ -146,9 +161,9 @@ body.menu-open{overflow:hidden}
 /* Situaciones */
 .situations{background:var(--cream)}
 .sit-grid{display:grid;gap:16px;margin-top:52px}
-.sit{padding:30px 28px;background:var(--paper);border-left:1px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0}
-.sit h3{font-size:23px;font-style:italic}
-.sit p{margin-top:12px;color:var(--muted);font-size:16px}
+.sit{padding:30px 28px;background:#fff;border:1px solid var(--line);border-top:2px solid var(--gold);border-radius:var(--radius);box-shadow:0 6px 20px rgba(32,56,47,.05)}
+.sit h3{font-size:24px;font-weight:500;line-height:1.25;color:var(--green)}
+.sit p{margin-top:10px;color:#3F453E;font-size:17px;line-height:1.6}
 .sit-cta{margin-top:44px;text-align:center}
 
 /* Pilares */
@@ -260,6 +275,10 @@ a.c-card:hover{border-color:var(--gold);transform:translateY(-3px)}
   .nav .btn{margin:0 0 0 8px;min-height:46px;padding:0 20px;font-size:16px}
   .brand strong{font-size:24px}
   .hero{min-height:clamp(560px,100svh,900px)}
+  .hero-frame{inset:calc(var(--header-h) + 24px) 24px 40px}
+  .hero-dots{right:56px;top:calc(var(--header-h) + 52px);width:180px;height:72px}
+  .hero-motto{display:flex;align-items:center;gap:16px;position:absolute;right:calc(var(--gutter) - 6px);top:50%;margin:0;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font:italic 400 17px/1 var(--serif);letter-spacing:.12em;color:var(--gold-2)}
+  .hero-motto::before,.hero-motto::after{content:"";width:1px;height:72px;background:var(--gold-2);opacity:.7}
   .hero::before{background:linear-gradient(90deg,rgba(20,40,32,.94) 0%,rgba(20,40,32,.82) 38%,rgba(20,40,32,.35) 68%,rgba(20,40,32,.08) 100%)}
   .about{grid-template-columns:.85fr 1fr;gap:96px}
   .areas-grid{grid-template-columns:repeat(4,1fr)}
@@ -311,7 +330,9 @@ a.c-card:hover{border-color:var(--gold);transform:translateY(-3px)}
   <!-- HERO -->
   <section class="hero" id="inicio" aria-labelledby="hero-title">
     <div class="hero-media"><img src="hero.webp" alt="" width="1672" height="941" fetchpriority="high"></div>
+    <span class="hero-frame" aria-hidden="true"></span>
     <span class="hero-dots" aria-hidden="true"></span>
+    <p class="hero-motto" aria-hidden="true">Id quod iustum est</p>
     <div class="wrap">
       <div class="hero-content">
         <p class="eyebrow">Estudio jurídico · CABA</p>
@@ -326,11 +347,18 @@ a.c-card:hover{border-color:var(--gold);transform:translateY(-3px)}
     </div>
   </section>
 
+  <div class="ribbon" aria-hidden="true">
+    <div class="ribbon-track">
+      <ul class="ribbon-list"><li>Familia</li><li>Laboral</li><li>Civil</li><li>Sucesiones</li><li>Ciudadanías</li><li>Amparos</li><li>Previsional</li></ul>
+      <ul class="ribbon-list"><li>Familia</li><li>Laboral</li><li>Civil</li><li>Sucesiones</li><li>Ciudadanías</li><li>Amparos</li><li>Previsional</li></ul>
+    </div>
+  </div>
+
   <!-- EL ESTUDIO -->
   <section class="section" id="estudio">
     <div class="wrap about">
       <div class="frame reveal">
-        <img src="perfil.webp" alt="Brenda Arias y Santiago Figueroa Campo, abogados del estudio" width="880" height="1100" loading="lazy">
+        <img src="hero.webp" alt="Brenda Arias y Santiago Figueroa Campo, abogados del estudio" width="880" height="1100" loading="lazy">
         <div class="ph">Foto del equipo</div>
       </div>
       <div class="about-copy reveal">
@@ -415,7 +443,8 @@ a.c-card:hover{border-color:var(--gold);transform:translateY(-3px)}
     <div class="wrap">
       <div class="center reveal">
         <p class="kicker">Situaciones frecuentes</p>
-        <h2>¿Te pasa algo de esto?</h2>
+        <h2>¿Estás pasando por alguna de estas situaciones?</h2>
+        <p class="lead">Estas son algunas de las consultas que más recibimos.</p>
       </div>
       <!-- PROVISORIO: reemplazar con los casos que más les consultan -->
       <div class="sit-grid">
@@ -454,7 +483,7 @@ a.c-card:hover{border-color:var(--gold);transform:translateY(-3px)}
         <p>Sabemos que quien nos consulta suele estar atravesando un momento difícil. Por eso no trabajamos en serie: escuchamos, explicamos con palabras claras y te mantenemos al tanto de cada avance.</p>
       </div>
       <div class="frame reveal">
-        <img src="cercania.webp" alt="Atención personalizada en el estudio" width="600" height="750" loading="lazy">
+        <img src="hero.webp" alt="Atención personalizada en el estudio" width="600" height="750" loading="lazy">
         <div class="ph">Foto del estudio</div>
       </div>
     </div>
