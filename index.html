@@ -289,6 +289,43 @@ a.c-card:hover{border-color:var(--gold);transform:translateY(-3px)}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+/* Asistente de consulta */
+.wiz{width:min(560px,100%);max-height:min(92dvh,720px);padding:0;border:0;border-radius:16px;background:var(--paper);color:var(--ink);box-shadow:0 30px 80px rgba(20,40,32,.35);overflow:auto}
+.wiz::backdrop{background:rgba(20,40,32,.6);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.wiz[open]{animation:wizIn .35s cubic-bezier(.2,.7,.2,1)}
+@keyframes wizIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.wiz-head{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px;background:var(--green);color:var(--cream);border-bottom:1px solid var(--gold)}
+.wiz-head p{font:600 11px/1 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2)}
+.wiz-bar{display:flex;gap:6px;margin-top:8px}
+.wiz-bar span{width:28px;height:2px;background:rgba(213,188,137,.3);transition:background .3s}
+.wiz-bar span.on{background:var(--gold-2)}
+.wiz-x{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:none;border:0;color:var(--cream);cursor:pointer;border-radius:50%}
+.wiz-x:hover{background:rgba(255,255,255,.08)}
+.wiz-x .icon{transform:rotate(45deg)}
+.wiz-body{padding:28px 24px 24px}
+.wiz-step[hidden]{display:none}
+.wiz h2{font-size:clamp(28px,4vw,34px);margin-bottom:6px}
+.wiz-sub{color:var(--muted);font-size:16px;margin-bottom:22px}
+.wiz-opts{display:grid;gap:10px}
+.wiz-opt{display:flex;align-items:center;gap:14px;width:100%;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);font:400 19px/1.25 var(--serif);color:var(--green);text-align:left;cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
+.wiz-opt:hover{border-color:var(--gold);transform:translateY(-2px)}
+.wiz-opt .icon{width:28px;height:28px;color:var(--green-2)}
+.wiz-opt .go{width:18px;height:18px;margin-left:auto;color:var(--gold)}
+.wiz label{display:block;font-size:14px;color:var(--muted);margin:16px 0 6px}
+.wiz input,.wiz textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;font:400 16px/1.5 var(--body);color:var(--ink)}
+.wiz input:focus,.wiz textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.wiz textarea{min-height:92px;resize:vertical}
+.wiz-prev{margin-top:20px;padding:16px 18px;background:#E7F5E9;border-radius:12px 12px 12px 2px;font-size:15px;line-height:1.55;color:#1F2620;white-space:pre-wrap;border-left:2px solid #25D366}
+.wiz-prev small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#4C7A55;margin-bottom:6px}
+.wiz-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:24px}
+.wiz-back{background:none;border:0;padding:8px 0;font:400 16px/1 var(--body);color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.wiz-back .icon{width:16px;height:16px;transform:rotate(180deg)}
+.wiz-direct{display:inline-block;margin-top:20px;font-size:15px;color:var(--muted);border-bottom:1px solid var(--line)}
+.wiz-direct:hover{color:var(--green);border-color:var(--gold)}
+@media (max-width:767px){
+  .wiz{width:100%;max-width:100%;margin:auto 0 0;border-radius:16px 16px 0 0;max-height:92dvh}
+  .wiz-foot .btn{width:100%}
+}
 </style>
 </head>
 <body class="no-js">
@@ -384,27 +421,27 @@ a.c-card:hover{border-color:var(--gold);transform:translateY(-3px)}
       </div>
       <!-- PROVISORIO: validar con el estudio los temas de cada área -->
       <div class="areas-grid">
-        <a class="area reveal" href="https://wa.me/5491139750033" data-wa="Hola, quisiera realizar una consulta sobre Derecho de Familia." data-area="familia">
+        <a class="area reveal" href="https://wa.me/5491139750033" data-wa="Hola, quisiera realizar una consulta sobre Derecho de Familia." data-area="familia" data-case="familia">
           <span class="area-tag">Especialidad</span>
           <svg class="icon" aria-hidden="true"><use href="#i-family"/></svg>
           <h3>Familia</h3>
           <p>Divorcios, cuota alimentaria, cuidado personal y régimen de comunicación.</p>
           <span class="more">Consultar <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
         </a>
-        <a class="area reveal" href="https://wa.me/5491139750033" data-wa="Hola, quisiera realizar una consulta sobre Derecho Laboral." data-area="laboral">
+        <a class="area reveal" href="https://wa.me/5491139750033" data-wa="Hola, quisiera realizar una consulta sobre Derecho Laboral." data-area="laboral" data-case="laboral">
           <span class="area-tag">Especialidad</span>
           <svg class="icon" aria-hidden="true"><use href="#i-work"/></svg>
           <h3>Laboral</h3>
           <p>Despidos, accidentes de trabajo, diferencias salariales y trabajo no registrado.</p>
           <span class="more">Consultar <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
         </a>
-        <a class="area reveal" href="https://wa.me/5491139750033" data-wa="Hola, quisiera realizar una consulta sobre Derecho Civil." data-area="civil">
+        <a class="area reveal" href="https://wa.me/5491139750033" data-wa="Hola, quisiera realizar una consulta sobre Derecho Civil." data-area="civil" data-case="civil">
           <svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg>
           <h3>Civil</h3>
           <p>Contratos, daños y perjuicios, reclamos y conflictos patrimoniales.</p>
           <span class="more">Consultar <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
         </a>
-        <a class="area reveal" href="https://wa.me/5491139750033" data-wa="Hola, quisiera consultar por la tramitación de una ciudadanía." data-area="ciudadanias">
+        <a class="area reveal" href="https://wa.me/5491139750033" data-wa="Hola, quisiera consultar por la tramitación de una ciudadanía." data-area="ciudadanias" data-case="ciudadanias">
           <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
           <h3>Ciudadanías</h3>
           <p>Tramitación de ciudadanías con orientación y seguimiento en cada etapa.</p>
@@ -432,7 +469,7 @@ a.c-card:hover{border-color:var(--gold);transform:translateY(-3px)}
           <p class="kicker">Tramitación de ciudadanías</p>
           <h2>Tu ciudadanía, <em>un nuevo horizonte.</em></h2>
           <p class="lead">Te orientamos sobre los requisitos, te ayudamos a reunir la documentación y hacemos el seguimiento de tu trámite en cada etapa.</p>
-          <a class="btn btn-wa" href="https://wa.me/5491139750033" data-wa="Hola, quisiera consultar por la tramitación de una ciudadanía." data-area="ciudadanias-banda"><svg class="icon icon-wa" aria-hidden="true"><use href="#i-wa"/></svg>Consultá por WhatsApp</a>
+          <a class="btn btn-wa" href="https://wa.me/5491139750033" data-wa="Hola, quisiera consultar por la tramitación de una ciudadanía." data-area="ciudadanias-banda" data-case="ciudadanias"><svg class="icon icon-wa" aria-hidden="true"><use href="#i-wa"/></svg>Consultá por WhatsApp</a>
         </div>
       </div>
     </div>
@@ -611,6 +648,40 @@ a.c-card:hover{border-color:var(--gold);transform:translateY(-3px)}
   </div>
 </footer>
 
+<dialog class="wiz" id="wiz" aria-labelledby="wiz-t1">
+  <div class="wiz-head">
+    <div><p>Armá tu consulta</p><div class="wiz-bar" aria-hidden="true"><span></span><span></span><span></span></div></div>
+    <button class="wiz-x" type="button" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+  </div>
+  <div class="wiz-body">
+    <div class="wiz-step" data-step="1">
+      <h2 id="wiz-t1">¿Sobre qué querés consultar?</h2>
+      <p class="wiz-sub">Elegí el tema y te ayudamos a armar el mensaje.</p>
+      <div class="wiz-opts" id="wiz-cases"></div>
+      <a class="wiz-direct" href="https://wa.me/5491139750033" data-wa="" data-area="asistente-directo" data-direct>Es otro tema · prefiero escribir directo</a>
+    </div>
+    <div class="wiz-step" data-step="2" hidden>
+      <h2 id="wiz-t2">¿Cuál es tu situación?</h2>
+      <p class="wiz-sub" id="wiz-case-name"></p>
+      <div class="wiz-opts" id="wiz-sits"></div>
+      <div class="wiz-foot"><button class="wiz-back" type="button" data-back><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>Volver</button></div>
+    </div>
+    <div class="wiz-step" data-step="3" hidden>
+      <h2 id="wiz-t3">Revisá tu mensaje</h2>
+      <p class="wiz-sub">Podés sumar tu nombre y un breve detalle. Es opcional.</p>
+      <label for="wiz-name">Tu nombre</label>
+      <input id="wiz-name" type="text" maxlength="60" autocomplete="name" placeholder="Ej.: Laura">
+      <label for="wiz-detail">Contanos brevemente tu caso</label>
+      <textarea id="wiz-detail" maxlength="400" placeholder="Ej.: Me separé hace 6 meses y tenemos dos hijos."></textarea>
+      <div class="wiz-prev" aria-live="polite"><small>Así se enviará</small><span id="wiz-msg"></span></div>
+      <div class="wiz-foot">
+        <button class="wiz-back" type="button" data-back><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>Volver</button>
+        <a class="btn btn-wa" id="wiz-send" href="https://wa.me/5491139750033" target="_blank" rel="noopener" data-area="asistente"><svg class="icon icon-wa" aria-hidden="true"><use href="#i-wa"/></svg>Enviar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <a class="wa-float" href="https://wa.me/5491139750033" data-wa="" data-area="flotante" aria-label="Consultá por WhatsApp"><svg class="icon icon-wa" aria-hidden="true"><use href="#i-wa"/></svg></a>
 
 <script>
@@ -621,10 +692,45 @@ a.c-card:hover{border-color:var(--gold);transform:translateY(-3px)}
     a.href='https://wa.me/'+WA+'?text='+encodeURIComponent(a.dataset.wa||DEF);
     a.target='_blank'; a.rel='noopener';
   });
-  // Conversión WhatsApp para GTM / Google Ads
+  const track=(event,data)=>(window.dataLayer=window.dataLayer||[]).push({event,...data});
+  // Asistente de consulta
+  const CASES={
+    familia:{name:'Familia',full:'Derecho de Familia',icon:'i-family',sits:['Divorcio o separación','Cuota alimentaria','Régimen de comunicación con mis hijos','Cuidado personal de mis hijos','Otra situación']},
+    laboral:{name:'Laboral',full:'Derecho Laboral',icon:'i-work',sits:['Despido','Accidente de trabajo','Trabajo no registrado','Diferencias salariales','Otra situación']},
+    civil:{name:'Civil',full:'Derecho Civil',icon:'i-doc',sits:['Contratos','Daños y perjuicios','Reclamo de una deuda','Conflicto por un inmueble','Otra situación']},
+    ciudadanias:{name:'Ciudadanías',full:'tramitación de ciudadanía',icon:'i-globe',sits:['Quiero saber si puedo tramitarla','Quiero iniciar el trámite','Tengo un trámite en curso','Otra consulta']}
+  };
+  const wiz=document.getElementById('wiz'), st={c:null,s:null};
+  const $=id=>document.getElementById(id), nameI=$('wiz-name'), detI=$('wiz-detail');
+  const opt=(label,icon,fn)=>{const b=document.createElement('button');b.type='button';b.className='wiz-opt';b.innerHTML=(icon?'<svg class="icon" aria-hidden="true"><use href="#'+icon+'"/></svg>':'')+'<span></span><svg class="icon go" aria-hidden="true"><use href="#i-arrow"/></svg>';b.querySelector('span').textContent=label;b.addEventListener('click',fn);return b;};
+  Object.entries(CASES).forEach(([k,c])=>$('wiz-cases').append(opt(c.name,c.icon,()=>pickCase(k))));
+  const go=n=>{
+    wiz.querySelectorAll('.wiz-step').forEach(x=>x.hidden=x.dataset.step!=String(n));
+    wiz.querySelectorAll('.wiz-bar span').forEach((b,i)=>b.classList.toggle('on',i<n));
+    wiz.setAttribute('aria-labelledby','wiz-t'+n);
+    const f=wiz.querySelector('[data-step="'+n+'"] .wiz-opt, [data-step="'+n+'"] input');f&&f.focus();
+    wiz.scrollTop=0;st.n=n;
+  };
+  const pickCase=k=>{st.c=k;const c=CASES[k];$('wiz-case-name').textContent=c.name;const box=$('wiz-sits');box.innerHTML='';c.sits.forEach(s=>box.append(opt(s,null,()=>{st.s=s;build();go(3);track('asistente_paso',{caso:k,situacion:s});})));go(2);};
+  const build=()=>{
+    const c=CASES[st.c], n=nameI.value.trim(), d=detI.value.trim(), other=/^Otra/.test(st.s);
+    let m='Hola'+(n?', soy '+n:'')+'. Quisiera realizar una consulta sobre '+c.full+(other?'.':': '+st.s.charAt(0).toLowerCase()+st.s.slice(1)+'.');
+    if(d)m+='\n\n'+d;
+    $('wiz-msg').textContent=m;
+    const send=$('wiz-send');send.href='https://wa.me/'+WA+'?text='+encodeURIComponent(m);send.dataset.area='asistente-'+st.c;
+  };
+  [nameI,detI].forEach(i=>i.addEventListener('input',build));
+  wiz.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>go(st.n-1)));
+  wiz.querySelector('[data-close]').addEventListener('click',()=>wiz.close());
+  wiz.addEventListener('click',e=>{if(e.target===wiz)wiz.close();});
+  $('wiz-send').addEventListener('click',()=>setTimeout(()=>wiz.close(),300));
+  const openWiz=k=>{nameI.value='';detI.value='';setMenu(false);wiz.showModal();k&&CASES[k]?pickCase(k):go(1);track('asistente_abierto',{caso:k||'general'});};
+  // Clicks: abre el asistente o mide la conversión WhatsApp
   document.addEventListener('click',e=>{
-    const a=e.target.closest('a[href*="wa.me"]');
-    if(a)(window.dataLayer=window.dataLayer||[]).push({event:'whatsapp_click',wa_area:a.dataset.area||'general'});
+    const a=e.target.closest('a[href*="wa.me"]'); if(!a)return;
+    const useWiz=wiz.showModal&&!a.hasAttribute('data-direct')&&!wiz.contains(a)&&(a.dataset.wa===''||a.dataset.case);
+    if(useWiz){e.preventDefault();openWiz(a.dataset.case);return;}
+    track('whatsapp_click',{wa_area:a.dataset.area||'general'});
   });
   // Menú mobile
   const btn=document.querySelector('.menu-btn'), nav=document.getElementById('nav');
